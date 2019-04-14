@@ -31,12 +31,28 @@ class PostsTableSeeder extends Seeder
 
     		];
     }
-    public function run()
+    public function generateAllPost($number=2000)
     {
+    	//7
     	$posts = [];
-    	foreach (range(0, 100) as $value) {
+    	// foreach (range(0, $number) as $value) {
+    	// 	$posts[] = $this->generateAPost();
+    	// }
+    	for ($i = 0; $i < $number; $i++) {
     		$posts[] = $this->generateAPost();
     	}
     	 DB::table('posts')->insert($posts);
+    
+    }
+    public function generateAllPost2($number=2000)
+    {
+    	//19
+    	for ($i = 0; $i < $number; $i++) {
+	    	Post::create($this->generateAPost());
+    	}
+    }
+    public function run()
+    {
+    	$this->generateAllPost(5000);
     }
 }
