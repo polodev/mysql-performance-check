@@ -19,15 +19,15 @@ class PostsTableSeeder extends Seeder
     			'user_id'     => rand(1, 2),
     			'title'       => $faker->sentence,
     			'description' => $faker->paragraph(5, true),
-    			'text'        => $faker->paragraph(50, true),
+    			'text'        => $faker->paragraph(30, true),
 
     			'title2'       => $faker->sentence,
     			'description2' => $faker->paragraph(5, true),
-    			'text2'        => $faker->paragraph(50, true),
+    			'text2'        => $faker->paragraph(30, true),
 
     			'title3'       => $faker->sentence,
     			'description3' => $faker->paragraph(5, true),
-    			'text3'        => $faker->paragraph(50, true),
+    			'text3'        => $faker->paragraph(30, true),
 
     		];
     }
@@ -42,7 +42,7 @@ class PostsTableSeeder extends Seeder
     		$posts[] = $this->generateAPost();
     	}
     	 DB::table('posts')->insert($posts);
-    
+
     }
     public function generateAllPost2($number=2000)
     {
@@ -53,6 +53,15 @@ class PostsTableSeeder extends Seeder
     }
     public function run()
     {
-    	$this->generateAllPost(5000);
+        $time_start = microtime(true);
+    	$this->generateAllPost(3000);
+        $time_end = microtime(true);
+        $execution_time = ($time_end - $time_start);
+        echo '<b>Total Execution Time:</b> '.$execution_time.' Seconds';
+        // $execution_time = ($time_end - $time_start)/60;
+        // echo '<b>Total Execution Time:</b> '.$execution_time.' Mins';
+
+
     }
+
 }
